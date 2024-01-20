@@ -1,0 +1,3 @@
+#bin/bash!
+
+rm *.sh~ *.h~ *.c~  && gcc *.c -I. -g -o PASM  
