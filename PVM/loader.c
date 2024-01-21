@@ -1,12 +1,13 @@
 #include "loader.h"
 
+//Takes in bytecode representation 
 
 u32 * load_bytecode(char * code){
   
   FILE * fp = fopen(code,"r");
   assert(fp != NULL);
   
-  fseek(fp , SEEK_END , 0);
+  fseek(fp , 4 , SEEK_END);
 
   u64 f_len = ftell(fp);
 
