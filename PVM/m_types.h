@@ -2,12 +2,12 @@
 
 #define STACK_SIZE 1000000
 
-typedef unsigned char  u8;
-typedef unsigned int  u32;
-typedef unsigned long u64;
+typedef unsigned char  u8; //sizeof char is 1 bytes = 8 bits
+typedef unsigned int  u32;//sizeof int is 4 bytes = 32 bits
+typedef unsigned long u64;//sizeof long is 8 bytes = 64 bits
 
-typedef float  f32;
-typedef double f64;
+typedef float  f32;//sizeof float is 4 bytes = 32 bits
+typedef double f64;//sizeof double is 8 bytes = 64 bits
 
 typedef union r32{
 
@@ -18,8 +18,8 @@ typedef union r32{
 
 typedef struct cpu{
 
-  u32 gpr[8];
-  f32 fpr[8];
+  u32 gpr[8];//general purpose register
+  f32 fpr[8];//float point register
   
   r32 ip;
   u32 pc;
@@ -32,4 +32,3 @@ typedef struct cpu{
   u32 ret;
   
 } cpu;
-
