@@ -21,7 +21,7 @@ int main(int argc , char ** argv){
   
   while(1){
     fetch(c,code);
-    execute(c,code);
+    execute(c,code)x;
   }
   
   
