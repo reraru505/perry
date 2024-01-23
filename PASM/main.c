@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "loader.h"
 #include "tokenizer.h"
+#include "opcode_selector.h"
+#include "writer.h"
 
 int main(int argc , char ** argv ){
 
@@ -10,11 +12,10 @@ int main(int argc , char ** argv ){
   char ** tokens = getTokens(buffer);
 
   int l = getBufferLen(buffer);
-
-  for(int i = 0 ; i < l ; i++ ){
-    printf("%s\n",tokens[i]);
-  }
-
+  
+  raw_code r = opcode_selector(tokens , l);
+  write_to_file(r);
+  
   return 0;
   
 }

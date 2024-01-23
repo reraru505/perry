@@ -1,26 +1,33 @@
 #include "loader.h"
-
-//Takes in bytecode representation 
+ 
 
 u32 * load_bytecode(char * code){
   
-  FILE * fp = fopen(code,"r");
-  assert(fp != NULL);
+  FILE *file = fopen(code, "rb");
+  if (file == NULL) {
+    printf("Error opening file!\n");
+  }
+    
+  fseek(file, 0, SEEK_END);
+  size_t fileSize = ftell(file);
+  rewind(file);
+
+  size_t numElements = fileSize / sizeof(u32);
   
-  fseek(fp , 4 , SEEK_END);
-
-  u64 f_len = ftell(fp);
-
-  rewind(fp);
-
-  u32 * buffer = (u32 *) calloc(f_len , sizeof(u32));
-
-  size_t ret = fread(buffer , sizeof(buffer) * f_len , f_len , fp);
-  assert(ret == f_len);
+  u32 *array = (u32 *)calloc(numElements , sizeof(u32));
   
-  fclose(fp);
+  if (array == NULL) {
+    printf("Error allocating memory!\n");
+  }
 
-  return buffer;
-  
+  size_t ret = fread(array, sizeof(u32), numElements, file);
+  if (ret != numElements) {
+    printf("Error reading file!\n");
+  }
+
+
+  fclose(file);
+
+  return array;
 }
 

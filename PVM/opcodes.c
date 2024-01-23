@@ -1,9 +1,6 @@
 #include "opcodes.h"
 
 void ins_hlt(cpu * c , u32 * code){
-
-  free(c);
-  free(code);
   
   exit(0);
   

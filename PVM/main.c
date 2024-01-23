@@ -16,12 +16,14 @@ int main(int argc , char ** argv){
   u32 * code = load_bytecode(argv[1]);
   cpu * c;
 
+  
   init_cpu(c);
   init_inst();
-  
+
   while(1){
     fetch(c,code);
-    execute(c,code)x;
+    execute(c,code);
+    
   }
   
   
