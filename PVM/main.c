@@ -22,10 +22,17 @@ int main(int argc , char ** argv){
 
   while(1){
     fetch(c,code);
+
+    if(c->ip.part[0] == 0){
+      break;
+    }
+    
     execute(c,code);
     
   }
-  
+
+  //free(c);
+  free(code);
   
   return 0;
   

@@ -1,4 +1,6 @@
 #pragma once
+
+#include "ctype.h"
 #include "string.h"
 #include "m_types.h"
 
@@ -18,7 +20,63 @@ int getBufferLen(char * code){
   
 }
 
-char ** getTokens(char * code){
+char * strip_space(char * c , int len){
+  int counter = 0 ;
+  
+  for (int i = 0 ; i < len ; i++){
+    if(c[i] == ' ' || c[i] == '\n' || c[i] == '\t'){
+      counter ++;
+    }
+  }
+
+  char * retval = (char * ) calloc(counter , sizeof(char));
+
+  int index = 0 ;
+  for (int i = 0 ;  i < len ; i++){
+    if(c[i] != ' ' || c[i] != '\n' || c[i] != '\t'){
+      retval[index] = c[i];
+      index++;
+    }
+  }
+
+  return retval;
+}
+
+token remove_blank_tokens(char ** tokens , int len){
+
+  int counter = 0;
+  
+  for (int i = 0 ; i < len ; i++){
+    if(tokens[i][0] != '\0'){
+      counter++;
+    }
+  }
+  
+  char ** retval = (char **) calloc(counter , sizeof(char *));
+
+  int index = 0;
+  
+  for (int i = 0 ; i < len ; i++){
+    if(tokens[i][0] != '\0'){
+      retval[index] = tokens[i];
+      //free(tokens[i]);
+      index++;
+    }
+  }
+  
+  free(tokens);
+
+
+  token t;
+  t.tokens = retval;
+  t.len  = counter;
+  
+  return t;
+
+}
+
+
+token getTokens(char * code){
 
   int num_tokens = getBufferLen(code);
   
@@ -32,36 +90,43 @@ char ** getTokens(char * code){
   
   while(last < a){
 
-    if(code[last] == ' ' || code[last] == '\n'){
+    if(code[last] == ' ' || code[last] == '\n' || code[last] == '\t'){
+
       int blen = last - first;
       char * buffer = (char *) calloc(blen ,sizeof(char));
       
       for(int i = 0; i < blen ; i++ ){
 	buffer[i] = code[first];
 	first++;
+	
+	
       }
+
       first = last+1;
-      tokens[index] = buffer;
+      char * retval = strip_space(buffer, blen);
+      free(buffer);
+      tokens[index] = retval;
       index++;
+	
     }
 
     last++;
     
   }
+  
+  
+  int blen = last - first;
+  char * buffer = (char *) calloc(blen ,sizeof(char));
+  
+  for(int i = 0; i < blen ; i++ ){
+    buffer[i] = code[first];
+    first++;
+  }
+  tokens[index] = buffer;
+ 
 
   
-    int blen = last - first;
-    char * buffer = (char *) calloc(blen ,sizeof(char));
-    
-    for(int i = 0; i < blen ; i++ ){
-      buffer[i] = code[first];
-      first++;
-    }
-    tokens[index] = buffer;
-    
-  
-  return tokens;
+  return remove_blank_tokens(tokens,num_tokens);
   
 }
-
 

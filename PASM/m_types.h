@@ -7,12 +7,20 @@ typedef unsigned long u64;
 typedef float  f32;
 typedef double f64;
 
-//typedef struct token {
-//
-//  char ** tokens;
-//  
-//  
-//} token;
+typedef struct label_table{
+
+  char ** label;
+  u32 * address;
+  int len;
+  
+}label_table;
+
+typedef struct token{
+
+  char ** tokens;
+  int len;
+  
+}token;
 
 typedef union r32{
 

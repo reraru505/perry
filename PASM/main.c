@@ -9,11 +9,9 @@ int main(int argc , char ** argv ){
   
 
   char * buffer = loader(argv[1]);
-  char ** tokens = getTokens(buffer);
-
-  int l = getBufferLen(buffer);
+  token t = getTokens(buffer);
   
-  raw_code r = opcode_selector(tokens , l);
+  raw_code r = opcode_selector(t.tokens , t.len);
   write_to_file(r);
   
   return 0;

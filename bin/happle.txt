@@ -1,9 +1,13 @@
 MOV A 12
-MOV B 13
-MOV C 500
+    MOV B 13
+    MOV C 500
 MOV D 600
-ADD C B C
+    ADD C B C
+    PRINT C
+ADD C A B
 PRINT C
+      MOV A 90
+      MOV B 12
 ADD C A B
 PRINT C
 HLT

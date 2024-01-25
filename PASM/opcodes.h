@@ -90,3 +90,53 @@ r32 is_print(char ** tokens ,
 }
 
 
+r32 is_label(char ** tokens ,
+	     int * current_index,
+	     int * data_next_signal,
+	     label_table labels,
+	     u32 buffindex){
+
+  
+
+}
+
+
+r32 is_call(char ** tokens ,
+	    int * current_index,
+	    int * data_next_signal){
+
+}
+
+r32 is_ret(char ** tokens ,
+	   int * current_index,
+	   int * data_next_signal){
+
+}
+
+
+r32 is_cmp(char ** tokens ,
+	   int * current_index,
+	   int * data_next_signal){
+
+}
+
+
+r32 is_je(char ** tokens ,
+	   int * current_index,
+	   int * data_next_signal){
+
+}
+
+
+r32 is_jg(char ** tokens ,
+	   int * current_index,
+	   int * data_next_signal){
+
+}
+
+
+r32 is_jl(char ** tokens ,
+	   int * current_index,
+	   int * data_next_signal){
+
+}

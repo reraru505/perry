@@ -4,9 +4,10 @@
 void init_cpu(cpu * c){
 
   c = (cpu *) malloc(sizeof(cpu));
-  
-  c->pc = 0;
 
+  c-> flags = 0;
+  c->pc = 0;
+  
   c->stack = (u32 *) calloc(STACK_SIZE , sizeof(u32));
 
   c->sp = 0;
