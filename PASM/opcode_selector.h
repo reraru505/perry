@@ -65,7 +65,7 @@ raw_code opcode_selector(char ** tokens , int len){
       }
     }
     else if(!strcmp(tokens[i],"CALL")){
-      ip = is_call(tokens , &i , &is_data_next);
+      ip = is_call(tokens , &i , &is_address_next);
       
     }else if(!strcmp(tokens[i],"RET")){
       ip = is_ret(tokens , &i , &is_data_next);

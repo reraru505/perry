@@ -125,7 +125,7 @@ u32 give_address(label_table * lt , char * label){
 
   for(int i = 0 ; i < lt->len ; i++){
     if(!strcmp(lt->label[i],label)){
-      return lt->address[i];
+      return lt->address[i] ;
     }
   }
   
@@ -137,7 +137,6 @@ r32 is_address(char ** tokens ,
 	       label_table * lt,
 	       int * address_next_signal){
   r32 retval;
-  retval.data = 0;
   retval.data = give_address(lt,tokens[*current_index]);
   *address_next_signal = 0;
   return retval;

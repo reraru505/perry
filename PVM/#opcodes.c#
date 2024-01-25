@@ -38,7 +38,7 @@ void ins_debug_print(cpu * c , u32 * code){
 
 void ins_call(cpu * c , u32 * code){
 
-  c->ret = c->pc;
+  c->ret = c->pc+1;
   c->was_called = 1;
   c->pc = code[c->pc];
 }

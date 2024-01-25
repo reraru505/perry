@@ -11,7 +11,9 @@ _start
 	MOV B 13
 	PRINT A
 	PRINT B
-	CMP A B
-	JG _great
-	JL _less
+	RET
+	CALL _start
+	CALL _start
+	CALL _start
+	CALL _start
 	HLT
