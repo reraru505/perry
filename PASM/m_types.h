@@ -22,6 +22,15 @@ typedef struct token{
   
 }token;
 
+
+typedef struct raw_code{
+
+  u32 * code;
+  int len;
+  
+}raw_code;
+
+
 typedef union r32{
 
   u32   data;

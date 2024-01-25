@@ -11,7 +11,7 @@ int getBufferLen(char * code){
   int retval = 0;
   
   for(int i = 0 ; i < a ; i++){
-    if(code[i] == ' ' || code[i] == '\n'){
+    if(code[i] == ' ' || code[i] == '\n' || code[i] == '\t'){
       retval++;
     }
   }
@@ -24,7 +24,7 @@ char * strip_space(char * c , int len){
   int counter = 0 ;
   
   for (int i = 0 ; i < len ; i++){
-    if(c[i] == ' ' || c[i] == '\n' || c[i] == '\t'){
+    if(c[i] != ' ' || c[i] != '\n' || c[i] != '\t'){
       counter ++;
     }
   }
@@ -123,7 +123,12 @@ token getTokens(char * code){
     first++;
   }
   tokens[index] = buffer;
- 
+  index++;
+
+  //for (int i = 0 ; i < index ; i++){
+  //  printf("%s\n",tokens[i]);
+  //}
+  
 
   
   return remove_blank_tokens(tokens,num_tokens);

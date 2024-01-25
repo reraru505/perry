@@ -1,13 +1,8 @@
-MOV A 12
-    MOV B 13
-    MOV C 500
-MOV D 600
-    ADD C B C
-    PRINT C
-ADD C A B
-PRINT C
-      MOV A 90
-      MOV B 12
-ADD C A B
-PRINT C
-HLT
+_here
+	MOV A 12
+	PRINT A
+	RET
+	PRINT A
+	CALL _here
+	PRINT A
+	HLT

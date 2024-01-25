@@ -18,6 +18,9 @@ void init_inst(){
   inst[8]  = ins_je; //jump if equal
   inst[9]  = ins_jg; //jump if greater
   inst[10] = ins_jl; //jump if lesser
+  inst[11] = ins_label;
+  
+  
 }
 
 void execute(cpu * c, u32 * code){

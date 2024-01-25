@@ -2,7 +2,7 @@
 #include "stdlib.h"
 #include "stdio.h"
 
-void ins_hlt(cpu * c , u32 * code);
+void ins_hlt(cpu * c , u32 * code); //useless func
 
 void ins_mov(cpu * c, u32 * code);
 
@@ -26,4 +26,4 @@ void ins_jg(cpu * c ,  u32 * code);
 
 void ins_jl(cpu * c ,  u32 * code);
 
-
+void ins_label(cpu * c ,  u32 * code); // another useless func

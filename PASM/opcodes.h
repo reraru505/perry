@@ -93,24 +93,58 @@ r32 is_print(char ** tokens ,
 r32 is_label(char ** tokens ,
 	     int * current_index,
 	     int * data_next_signal,
-	     label_table labels,
+	     label_table * labels,
 	     u32 buffindex){
-
   
-
+  r32 retval;
+  retval.part[0] = 11;
+  labels->label[labels->len] = tokens[*current_index];
+  labels->address[labels->len] = buffindex;
+  labels->len = labels->len + 1;
+  return retval;
+  
 }
 
 
 r32 is_call(char ** tokens ,
 	    int * current_index,
-	    int * data_next_signal){
-
+	    int * address_next_signal){
+  r32 retval;
+  retval.part[0] = 5;
+  *address_next_signal = 1;
+  return retval;
 }
+
+u32 give_address(label_table * lt , char * label){
+
+  for(int i = 0 ; i < lt->len ; i++){
+    if(!strcmp(lt->label[i],label)){
+      return lt->address[i];
+    }
+  }
+  
+}
+
+
+r32 is_address(char ** tokens ,
+	       int * current_index,
+	       label_table * lt,
+	       int * address_next_signal){
+  r32 retval;
+  retval.data = give_address(lt,tokens[*current_index]);
+  *address_next_signal = 0;
+  return retval;
+  
+}
+
 
 r32 is_ret(char ** tokens ,
 	   int * current_index,
 	   int * data_next_signal){
-
+  r32 retval;
+  retval.part[0] = 6;
+  return retval;
+  
 }
 
 

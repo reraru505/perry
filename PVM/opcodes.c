@@ -1,4 +1,5 @@
 #include "opcodes.h"
+#include "stdio.h"
 
 void ins_hlt(cpu * c , u32 * code){
   
@@ -37,14 +38,17 @@ void ins_debug_print(cpu * c , u32 * code){
 
 void ins_call(cpu * c , u32 * code){
 
-  c->ret = c->pc + 1;
+  c->ret = c->pc+1;
+  c->was_called = 1;
   c->pc = code[c->pc];
-  
 }
 
 void ins_ret(cpu * c , u32 * code){
-
-  c->pc = c->ret;
+  
+  if(c->was_called == 1){
+    c->pc = c->ret;
+    c->was_called = 0;
+  }
   
 }
 
@@ -85,3 +89,6 @@ void ins_jl(cpu * c ,  u32 * code){
 }
 
 
+void ins_label(cpu * c ,  u32 * code){
+
+}

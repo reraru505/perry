@@ -25,7 +25,11 @@ u32 * load_bytecode(char * code){
     printf("Error reading file!\n");
   }
 
-
+  for(int i = 0 ;  i < ret ; i++){
+    printf("%d\n",array[i]);
+  }
+  printf("\n\n");
+  
   fclose(file);
 
   return array;

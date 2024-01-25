@@ -5,6 +5,7 @@ void init_cpu(cpu * c){
 
   c = (cpu *) malloc(sizeof(cpu));
 
+  c->was_called = 0;
   c-> flags = 0;
   c->pc = 0;
   

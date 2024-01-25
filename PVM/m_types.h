@@ -33,6 +33,7 @@ typedef struct cpu{
   u32 sp;
   u32 bp;
 
+  u8 was_called;
   u32 ret;
   
 } cpu;
