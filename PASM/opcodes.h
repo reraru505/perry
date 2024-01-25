@@ -28,6 +28,7 @@ r32 is_mov(char ** tokens ,
 	   int * data_next_signal){
 
   r32 retval;
+  retval.data = 0;
 
   retval.part[0] = 1;
   
@@ -45,6 +46,7 @@ r32 is_data(char ** tokens ,
 	    int * current_index,
 	    int * data_next_signal){
   r32 retval;
+  retval.data = 0;
   retval.data = atoi(tokens[*current_index]);
   *data_next_signal = 0;
   return retval;
@@ -56,6 +58,7 @@ r32 is_add(char ** tokens ,
 	   int * data_next_signal){
 
   r32 retval;
+  retval.data = 0;
   retval.part[0] = 3;
   *current_index = *current_index + 1;
   retval.part[1] = give_reg(tokens[*current_index]);
@@ -73,6 +76,7 @@ r32 is_hlt(char ** tokens ,
 	   int * data_next_signal){
 
   r32 retval;
+  retval.data = 0;
   retval.part[0] = 0;
   return retval;
 }
@@ -97,6 +101,7 @@ r32 is_label(char ** tokens ,
 	     u32 buffindex){
   
   r32 retval;
+  retval.data = 0;
   retval.part[0] = 11;
   labels->label[labels->len] = tokens[*current_index];
   labels->address[labels->len] = buffindex;
@@ -110,6 +115,7 @@ r32 is_call(char ** tokens ,
 	    int * current_index,
 	    int * address_next_signal){
   r32 retval;
+  retval.data = 0;
   retval.part[0] = 5;
   *address_next_signal = 1;
   return retval;
@@ -131,6 +137,7 @@ r32 is_address(char ** tokens ,
 	       label_table * lt,
 	       int * address_next_signal){
   r32 retval;
+  retval.data = 0;
   retval.data = give_address(lt,tokens[*current_index]);
   *address_next_signal = 0;
   return retval;
@@ -142,6 +149,7 @@ r32 is_ret(char ** tokens ,
 	   int * current_index,
 	   int * data_next_signal){
   r32 retval;
+  retval.data = 0;
   retval.part[0] = 6;
   return retval;
   
@@ -152,25 +160,52 @@ r32 is_cmp(char ** tokens ,
 	   int * current_index,
 	   int * data_next_signal){
 
+  
+  r32 retval;
+  retval.data = 0;
+  retval.part[0] = 7;
+  *current_index = *current_index + 1;
+  retval.part[1] = give_reg(tokens[*current_index]);
+  *current_index = *current_index + 1;
+  retval.part[2] = give_reg(tokens[*current_index]);
+  return retval;
+  
 }
 
 
 r32 is_je(char ** tokens ,
 	   int * current_index,
-	   int * data_next_signal){
+	   int * address_next_signal){
 
+  r32 retval;
+  retval.data = 0;
+  retval.part[0] = 8;
+  *address_next_signal = 1;
+  return retval;
 }
 
 
 r32 is_jg(char ** tokens ,
 	   int * current_index,
-	   int * data_next_signal){
-
+	   int * address_next_signal){
+  
+  r32 retval;
+  retval.data = 0;
+  retval.part[0] = 9;
+  *address_next_signal = 1;
+  return retval;
+  
 }
 
 
 r32 is_jl(char ** tokens ,
 	   int * current_index,
-	   int * data_next_signal){
+	   int * address_next_signal){
 
+  
+  r32 retval;
+  retval.data = 0;
+  retval.part[0] = 10;
+  *address_next_signal = 1;
+  return retval;
 }

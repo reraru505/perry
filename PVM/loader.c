@@ -1,7 +1,7 @@
 #include "loader.h"
  
 
-u32 * load_bytecode(char * code){
+code_and_len load_bytecode(char * code){
   
   FILE *file = fopen(code, "rb");
   if (file == NULL) {
@@ -25,13 +25,13 @@ u32 * load_bytecode(char * code){
     printf("Error reading file!\n");
   }
 
-  for(int i = 0 ;  i < ret ; i++){
-    printf("%d\n",array[i]);
-  }
-  printf("\n\n");
-  
   fclose(file);
 
-  return array;
+  code_and_len retval;
+
+  retval.src = array;
+  retval.len = ret;
+  
+  return retval;
 }
 

@@ -6,4 +6,4 @@
 
 #include "m_types.h"
 
-u32 * load_bytecode(char * code);
+code_and_len load_bytecode(char * code);

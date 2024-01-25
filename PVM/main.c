@@ -13,26 +13,34 @@ int main(int argc , char ** argv){
     printf("please provide a target to execute\n");
   }
   
-  u32 * code = load_bytecode(argv[1]);
-  cpu * c;
+  code_and_len code = load_bytecode(argv[1]);
+  cpu * c = (cpu *) malloc(sizeof(cpu));
 
   
-  init_cpu(c);
+  for(int i = 0 ; i < code.len ; i++){
+    printf("%d\n",code.src[i]);
+  
+  }
+
+  
+
+  
+  init_cpu(c , code.src , code.len);
+  printf("yo ho : %d\n\n\n",c->pc);
   init_inst();
-
+  
   while(1){
-    fetch(c,code);
-
+    fetch(c,code.src);
     if(c->ip.part[0] == 0){
       break;
     }
     
-    execute(c,code);
+    execute(c,code.src);
     
   }
 
   //free(c);
-  free(code);
+  free(code.src);
   
   return 0;
   

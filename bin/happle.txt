@@ -1,8 +1,17 @@
-_here
-	MOV A 12
+_great
 	PRINT A
 	RET
+
+_less
+	PRINT B
+	RET
+	
+_start
+	MOV A 12
+	MOV B 13
 	PRINT A
-	CALL _here
-	PRINT A
+	PRINT B
+	CMP A B
+	JG _great
+	JL _less
 	HLT

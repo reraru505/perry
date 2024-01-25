@@ -66,29 +66,41 @@ void ins_cmp(cpu * c , u32 * code){
 
 void ins_je(cpu * c ,  u32 * code){
 
-  if((c->flags & 0b01000000) == 0b01000000){
+  if((c->flags & 0b01000000) == 64){
+    c->ret = c->pc+1;
+    c->was_called = 1;
     c->pc = code[c->pc];
+  }else{
+    c->pc++;
   }
   
 }
 
 void ins_jg(cpu * c ,  u32 * code){
 
-  if((c->flags & 0b00100000) == 0b00100000){
+  if((c->flags & 0b00100000) == 32){
+    c->ret = c->pc+1;
+    c->was_called = 1;
     c->pc = code[c->pc];
+  }else{
+    c->pc++;
   }
   
 }
 
 void ins_jl(cpu * c ,  u32 * code){
 
-  if((c->flags & 0b00010000) == 0b00010000){
+  if((c->flags & 0b00010000) == 16){
+    c->ret = c->pc + 1;
+    c->was_called = 1;
     c->pc = code[c->pc];
+  }else{
+    c->pc++;
   }
   
 }
 
 
 void ins_label(cpu * c ,  u32 * code){
-
+  //empty ( o W o )
 }

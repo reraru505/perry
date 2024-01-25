@@ -54,12 +54,17 @@ raw_code opcode_selector(char ** tokens , int len){
     }else if(!strcmp(tokens[i],"PRINT")){
       ip = is_print(tokens , &i , &is_data_next);
       
-    }else if ((i - 1) < 0 && tokens[i][0] == '_' ||
-	      strcmp(tokens[i-1],"CALL") &&
-		     tokens[i][0] == '_'){
-      ip = is_label(tokens , &i , &is_data_next,lt,buff_index);
-      
-    }else if(!strcmp(tokens[i],"CALL")){
+    }else if (tokens[i][0] == '_'){
+      if((i - 1 ) < 0){
+	ip = is_label(tokens , &i , &is_data_next,lt,buff_index);
+      }
+      else if((i - 1) > 0){
+	if(strcmp(tokens[i-1],"CALL")){
+	  ip = is_label(tokens , &i , &is_data_next,lt,buff_index);
+	}
+      }
+    }
+    else if(!strcmp(tokens[i],"CALL")){
       ip = is_call(tokens , &i , &is_data_next);
       
     }else if(!strcmp(tokens[i],"RET")){
@@ -68,21 +73,30 @@ raw_code opcode_selector(char ** tokens , int len){
     }else if(!strcmp(tokens[i],"JE")){
       ip = is_je(tokens , &i , &is_data_next);
       
+    }else if(!strcmp(tokens[i],"CMP")){
+      ip = is_cmp(tokens , &i , &is_address_next);
+      
     }else if(!strcmp(tokens[i],"JG")){
-      ip = is_jg(tokens , &i , &is_data_next);
+      ip = is_jg(tokens , &i , &is_address_next);
       
     }else if(!strcmp(tokens[i],"JL")){
-      ip = is_jl(tokens , &i , &is_data_next);
+      ip = is_jl(tokens , &i , &is_address_next);
       
     }
     
     buffer[buff_index] = ip.data;
     buff_index++;
   }
+  buffer[buff_index] = give_address( lt , "_start");
+  buff_index++;
   
   u32 * new_ret = (u32 *) calloc(buff_index ,sizeof(u32));
   for(int  i = 0 ; i < buff_index ;i++){
     new_ret[i] = buffer[i];
+  }
+
+  for(int i = 0 ; i < buff_index ; i++){
+    printf("%d\n",new_ret[i]);
   }
   
   free(buffer);
