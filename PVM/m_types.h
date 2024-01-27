@@ -23,7 +23,7 @@ typedef struct cpu{
 
   u32 tmp; 
   
-  u8 flags; // zero | eq | greater | less_than | fuck last 4 bits 
+  u8 flags; // not eq | eq | greater | less_than | fuck last 4 bits 
   
   r32 ip;
   u32 pc;

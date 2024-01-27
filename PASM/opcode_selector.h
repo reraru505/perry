@@ -71,7 +71,11 @@ raw_code opcode_selector(char ** tokens , int len){
       ip = is_ret(tokens , &i , &is_data_next);
       
     }else if(!strcmp(tokens[i],"JE")){
-      ip = is_je(tokens , &i , &is_data_next);
+      ip = is_je(tokens , &i , &is_address_next);
+      
+    }else if(!strcmp(tokens[i],"JNE")){
+      ip = is_je(tokens , &i , &is_address_next);
+      ip.part[0] = 18;
       
     }else if(!strcmp(tokens[i],"CMP")){
       ip = is_cmp(tokens , &i , &is_address_next);
@@ -82,6 +86,32 @@ raw_code opcode_selector(char ** tokens , int len){
     }else if(!strcmp(tokens[i],"JL")){
       ip = is_jl(tokens , &i , &is_address_next);
       
+    }else if(!strcmp(tokens[i],"SUB")){
+      ip = is_add(tokens , &i , &is_address_next);
+      ip.part[0] = 12;
+      
+    }else if(!strcmp(tokens[i],"MUL")){
+      ip = is_add(tokens , &i , &is_address_next);
+      ip.part[0] = 14;
+      
+    }else if(!strcmp(tokens[i],"DIV")){
+      ip = is_add(tokens , &i , &is_address_next);
+      ip.part[0] = 13;
+      
+    }else if(!strcmp(tokens[i],"MOD")){
+      ip = is_add(tokens , &i , &is_address_next);
+      ip.part[0] = 15;
+      
+    }else if(!strcmp(tokens[i],"INC")){
+      ip = is_print(tokens , &i , &is_address_next);
+      ip.part[0] = 16;
+      
+    }else if(!strcmp(tokens[i],"DEC")){
+      ip = is_print(tokens , &i , &is_address_next);
+      ip.part[0] = 17;
+      
+    }else if(!strcmp(tokens[i],"MOVR")){
+      ip = is_movr(tokens , &i , &is_address_next);
     }
     
     buffer[buff_index] = ip.data;
@@ -96,7 +126,7 @@ raw_code opcode_selector(char ** tokens , int len){
   }
 
   for(int i = 0 ; i < buff_index ; i++){
-    printf("%d\n",new_ret[i]);
+    printf("%u\n",new_ret[i]);
   }
   
   free(buffer);

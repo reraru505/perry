@@ -1,19 +1,12 @@
-_great
-	PRINT A
-	RET
-
-_less
-	PRINT B
-	RET
-	
 _start
 	MOV A 12
 	MOV B 13
-	PRINT A
+	MOV C 0
+_loop
 	PRINT B
-	RET
-	CALL _start
-	CALL _start
-	CALL _start
-	CALL _start
+	DEC A
+	CMP C A
+	JNE _loop
 	HLT
+	
+	
