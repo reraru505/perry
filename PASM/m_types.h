@@ -7,6 +7,16 @@ typedef unsigned long u64;
 typedef float  f32;
 typedef double f64;
 
+typedef u8 bool;
+#define true 1
+#define false 0
+
+typedef struct Length_tracker{
+  int token_list_len;
+  int token_array_len;
+  
+} Length_tracker;
+
 typedef struct label_table{
 
   char ** label;
