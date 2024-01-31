@@ -2,6 +2,17 @@
 #include "string.h"
 #include "stdlib.h"
 
+typedef enum Opcodes{
+
+  MOV,
+  HLT,
+  CALL,
+  ADD,
+  SUB
+  //lets write the vm first to decide the ordering
+} Opcodes;
+
+
 u8 give_reg(char * name);
 
 r32 is_mov(char ** tokens ,
