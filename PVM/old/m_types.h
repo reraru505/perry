@@ -9,34 +9,30 @@ typedef unsigned long u64; //sizeof long is 8 bytes = 64 bits
 typedef float  f32; //sizeof float is 4 bytes = 32 bits
 typedef double f64; //sizeof double is 8 bytes = 64 bits
 
+
+typedef struct IP{
+
+  u32 OPC : 4; // optional operand 3
+  u32 OPB : 4; // optional operand 2
+  u32 OPA : 4; // optional operand 1
+  u32 OPO : 16; // opcode
+  u32 ADM : 4; // addressing mode 
+}IP;
+
+
 typedef union r32{
 
   u32   data;
+  IP      ip;
   u8 part[4];
   
 } r32;
 
-typedef struct cpu{
+typedef struct len_tracker{
 
-  u32 gpr[8]; //general purpose register array
-  f32 fpr[8]; //float point register array 
-
-  u32 tmp; 
+  int code_len;
   
-  u8 flags; // not eq | eq | greater | less_than | fuck last 4 bits 
-  
-  r32 ip;
-  u32 pc;
-
-  u32 * stack;
-  
-  u32 sp;
-  u32 bp;
-
-  u8 was_called;
-  u32 ret;
-  
-} cpu;
+} len_tracker;
 
 typedef struct code_and_len{
 

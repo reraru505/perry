@@ -1,0 +1,12 @@
+#pragma once
+
+
+typedef struct Assembler{
+
+  
+
+  
+} Assembler;
+
+void assembler_init(Assembler * as);
+void assembler_end(Assembler * as);

@@ -46,3 +46,19 @@ void ins_mod(cpu * c ,  u32 * code);
 void ins_inc(cpu * c ,  u32 * code);
 
 void ins_dec(cpu * c ,  u32 * code);
+
+//newer fucntions to use according to addresssig mode
+
+void addressing_mode_nil();
+
+void addressing_mode_atr();
+
+void addressing_mode_mtr();
+
+void addressing_mode_rtr();
+
+void addressing_mode_mtm();
+
+void addressing_mode_ata();
+
+void addressing_mode_atm();

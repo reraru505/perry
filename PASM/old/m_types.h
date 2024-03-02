@@ -1,7 +1,5 @@
 #pragma once
 
-//simple types
-
 typedef unsigned char  u8;
 typedef unsigned int  u32;
 typedef unsigned long u64;
@@ -13,41 +11,39 @@ typedef u8 bool;
 #define true 1
 #define false 0
 
-//enums 
-
-typedef enum Token_type {
-
-  DATA,
-  ADDRESS,
-  OPCODE,
-  REGISTER
-  
-} Token_type;
-
-
-//complex types
-
-
 typedef struct Length_tracker{
   int token_list_len;
   int token_array_len;
-  int code_len;
   
 } Length_tracker;
 
+typedef struct label_table{
 
-typedef struct Token {
-
-  Token_type type;
-  char * name;
+  char ** label;
+  u32 * address;
+  int len;
   
-} Token;
+}label_table;
 
-typedef struct Node{
+typedef struct token{
 
-  struct Node * next;
-  Token token;
+  char ** tokens;
+  int len;
   
-} Node;
+}token;
 
 
+typedef struct raw_code{
+
+  u32 * code;
+  int len;
+  
+}raw_code;
+
+
+typedef union r32{
+
+  u32   data;
+  u8 part[4];
+  
+} r32;
